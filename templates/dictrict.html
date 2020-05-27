@@ -1,0 +1,112 @@
+<div class="text-center header">
+   <h2>{{ title }}</h2>
+   {% include 'header.html' %}
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+</div>
+   <script>
+      $(document).ready(function(){
+      MultiPileChart()
+       var action = "Confirmed";
+       var state=""; var state_code=""
+       var _dictrict="";
+        $(".state li a").click(function(){
+          $(".btnState:first-child").text($(this).text());
+          $(".btnState:first-child").val($(this).text());
+          state_code = $(this).attr("id")
+          state = $(this).text()
+          window.location.href = "/dictrictbyaction?code=" + state_code +"&state="+state;
+       });
+       });
+       
+   </script>
+   <body>
+      <br/>
+      <div class="container">
+         <div class="row">
+           
+         <div class="col-lg-3 col-md-3 col-xs-3 header">
+            <div class="dropdown " style="height: 1265px;">
+               <br/>
+               <ul class="state">
+                  {% for keys in states.keys() %} 
+                  <li><a href="#" id="{{keys}}"> {{states[keys]}}</a></li>
+                  {% endfor %}
+               </ul>
+            </div>
+          </div>
+            <div class="col-lg-9 col-md-9 col-xs-9 header">
+               <br/>
+               Confirmed Cases: 
+               <canvas id="Confirmed" style="width:100%; height:400px;"></canvas>
+               
+               Recovered Cases: 
+               <canvas id="Recovered" style="width:100%; height:380px;"></canvas>
+               
+               Deceased Cases: 
+               <canvas id="Deceased" style="width:100%; height:400px;"></canvas>
+               <script>
+                function MultiPileChart()
+                {
+                    $( "canvas" ).each(function( index ) {
+                            var color ="";
+                            if(($(this).attr("id")=="Confirmed"))
+                            {
+                                color = "#FFA833"
+                                data = [{% for item in Confirmed %}
+                                         "{{ item }}",
+                                      {% endfor %}]
+                                
+                            }
+                             if(($(this).attr("id")=="Recovered"))
+                             {
+                                color = "green"
+                                data = [{% for item in Recovered %}
+                                         "{{ item }}",
+                                      {% endfor %}]
+                                }
+                             if(($(this).attr("id")=="Deceased"))
+                             {
+                                color = "red"
+                                data = [{% for item in Deceased %}
+                                         "{{ item }}",
+                                      {% endfor %}]
+                                }
+                             DraWChat($(this).attr("id"),color,data)
+                        });
+                }
+                function DraWChat(mchart_id,color,_chartData)
+                  {
+                   
+                     var barData = {
+                     labels : [{% for item in labels %}
+                             "{{ item }}",
+                            {% endfor %}],
+                     datasets : [
+                        {
+                              fillColor: color,
+                              strokeColor: "rgba(151,187,205,1)",
+                              pointColor: "{{color}}",
+                              data : _chartData
+                        }]
+                     }
+                     // get bar chart canvas
+                     var mychart = document.getElementById(mchart_id).getContext("2d");
+                     steps = 20
+                     max = {{max}}
+                     // draw bar chart
+                     var LineChartDemo = new Chart(mychart).Line(barData, {
+                      scaleStepWidth: Math.ceil(max / steps),
+                     });
+                     }
+
+                  </script>
+            </div>
+         </div>
+      </div>
+      <footer>
+      <center>
+              <a href="https://www.covid19india.org/" target="_blank" class="btn btn-info" role="button">Source of Data</a>
+     </center>
+      </footer>
+   </body>
+</html>

@@ -1,0 +1,84 @@
+<div class="text-center header">
+  <h2>COVID-19 Cases in India</h2>
+  {% include 'header.html' %}
+</div>
+<script>
+function GetsStateInfo(obj)
+{ 
+  state_code = $(obj).attr("id");
+  state = $(obj).text();
+  action="Confirmed";
+  window.location.href = "/statebyaction?code=" + state_code + "&action=" +  action + "&state=" + state
+}
+</script>
+<body>
+    <div class="container-fluid">
+        <div class="row ">
+         
+          <div class="col-lg-3 header">
+             ZEE NEWS :)
+            <div class="force-scroll" style="background-color: aliceblue;">
+            <table class="table table-striped table-bordered ">
+            {% for ind in feed %}
+              <tr><td>
+              <a href={{ind.link}} target="_blank">{{ind.title}}</a>
+            </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+          </div>
+            <div class="col-lg-9">
+            
+                <div class="table-responsive text-nowrap force-scroll ">
+                 <table id="resultsTable" class="table rwd-table">
+                    <thead><tr>
+                     <th>State</th><th>Confirmed</th><th>Active</th>
+                       <th>Recovered</th><th>Deaths</th></tr>
+                    </thead>
+                    {% for ind in tables.index %}
+                        <tr>
+                            <td ><a href="#" style="color:rgb(240, 233, 233)" id="{{tables['State_code'][ind]}}" onclick="GetsStateInfo(this);">{{tables["State"][ind]}}</a></td>
+                            <td  style="color:rgb(240, 233, 233)">{{tables["Confirmed"][ind]}}</td>
+                             <td  style="color:#FFA833">{{tables["Active"][ind]}}</td>
+                            <td style="color:green">{{tables["Recovered"][ind]}}</td>
+                            <td style="color:red"> {{tables["Deaths"][ind]}}</td>
+                          </tr>
+                   
+                    {% endfor %}
+                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+     
+  <div class="h-divider">
+    <div class="shadow"></div>
+    </div>
+  
+     <footer  style="height: 250px;">
+       <div class="container-fluid header">
+         <div class="row">
+         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 table-bordered">
+          <iframe  src="https://www.youtube.com/embed/EJbjyo2xa2o" 
+          frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 table-bordered">
+          <iframe  src="https://www.youtube.com/embed/NWXBtDlcKSk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 table-bordered">
+          <iframe  src="https://www.youtube.com/embed/Ptms4oe7mn0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 table-bordered">
+          <iframe  src="https://www.youtube.com/embed/Vvz4ND2YUmY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+       
+      </footer>
+</body>
+<script>
+ $(document).ready(function(){
+     $("table").removeClass("dataframe")
+ })
+
+</script>
+</html>

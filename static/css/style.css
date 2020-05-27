@@ -1,0 +1,115 @@
+
+.rwd-table {
+    margin: 1em 0;
+    min-width: 300px;
+  }
+  .rwd-table tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  .rwd-table th {
+    display: none;
+  }
+  .rwd-table td {
+    display: block;
+  }
+  
+  .rwd-table td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+    width: 6.5em;
+    display: inline-block;
+  }
+  @media (min-width: 480px) {
+    .rwd-table td:before {
+      display: none;
+    }
+  }
+  .rwd-table th, .rwd-table td {
+    text-align: left;
+  }
+  @media (min-width: 480px) {
+    .rwd-table th, .rwd-table td {
+      display: table-cell;
+      padding: .25em .5em;
+    }
+    .rwd-table th:first-child, .rwd-table td:first-child {
+      padding-left: 0;
+    }
+    .rwd-table th:last-child, .rwd-table td:last-child {
+      padding-right: 0;
+    }
+  }
+  .header
+  {
+    background-color: aliceblue;
+  }
+  
+  body {
+    font-family: serif;
+    font-size: medium;
+    text-rendering: optimizeLegibility;
+    background-image: url(/static/img/corona1.jpeg);
+  }
+  a { color: #000000; }
+  a:hover { text-decoration: none; }
+  .question { font-weight: bold; }
+  .force-scroll { overflow-y: scroll; height: 800px;}
+  ul>li a:hover { color:#FFA833; }
+  h2.question{ font-size: 15px;}
+  h2.answer{ font-size: 15px;}
+  .active { color:green; font-size:20px;}
+
+  h1 {
+    font-weight: normal;
+    letter-spacing: -1px;
+    color: #34495E;
+
+  }
+  h2{
+    margin-top: 0px;
+  }
+  .rwd-table {
+    background: #34495E;
+    color: #fff;
+    border-radius: 1.4em;
+    overflow: hidden;
+  }
+  .rwd-table tr {
+    border-color: #46637f;
+  }
+  .rwd-table th, .rwd-table td {
+    margin: .5em 1em;
+  }
+  @media (min-width: 480px) {
+    .rwd-table th, .rwd-table td {
+      padding: 1em !important;
+    }
+  }
+  .rwd-table th, .rwd-table td:before {
+    color: #dd5;
+  }
+  
+  .h-divider {
+    margin: auto;
+    margin-top: 40px;
+    width: 80%;
+    position: relative;
+  }
+  
+  .h-divider .shadow {
+    overflow: hidden;
+    height: 20px;
+    
+  }
+  
+  .h-divider .shadow:after {
+    content: '';
+    display: block;
+    margin: -25px auto 0;
+    width: 100%;
+    height: 25px;
+    border-radius: 125px/12px;
+    box-shadow: 0 0 8px black;
+  }
+  

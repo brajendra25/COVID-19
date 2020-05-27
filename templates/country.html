@@ -1,0 +1,104 @@
+
+   <div class="text-center header">
+    <h2>{{ title }}</h2>
+    {% include 'header.html' %}
+   </div>
+   <script>
+      $(document).ready(function(){
+          DraWChat();
+      });
+   </script>
+   <body>
+      <div class="container">
+       <div class="row header">
+         <div class="col-lg-3 ">
+                  <span><a href="/action?action=Confirmed" id="action-1">Confirmed</a>|</span>
+                  <span><a href="/action?action=Recovered" id="action-2">Recovered</a></span>|
+                  <span><a href="/action?action=Deceased" id="action-3">Deceased</a></span>
+               </ul>
+          </div>
+       
+           <div class="col-lg-9 ">
+                 {% for key in cases_dict.keys() %}
+                 <div class="col-lg-3">
+                        <b>{{ key }}</b> : {{cases_dict[key]}}
+                </div>
+                 {% endfor %}
+            </div>
+          </div>
+         <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 header" >
+               <canvas id="chart" style=""></canvas>
+               <script>
+               
+                  function DraWChat()
+                  {
+                   max = {{max}}
+                   
+                      var barData = {
+                                     labels : [
+                                            {% for item in labels %}
+                                             "{{ item }}",
+                                            {% endfor %}
+                                      	  ],
+                  
+                                    datasets : [{
+                                        backgroundColor: "{{color}}",
+                                        label: "Cases:",
+                                        data :  [
+                                                  {% for item in values %}
+                                                     "{{ item }}",
+                                                    {% endfor %}
+                                          	    ]
+                                  	    }],
+                          	    }
+                      
+                  	  var option = {
+                                  scales: {
+                                    yAxes: [
+                                      {
+                                        stacked: true,
+                                        gridLines: {
+                                          display: true,
+                                          color: "{{color}}"
+                                        },
+                                        ticks: {
+                                          suggestedMax: max,
+                                          suggestedMin: 0
+                                        }
+                                      }
+                                    ],
+                                    xAxes: [
+                                      {
+                                        gridLines: {
+                                          display: false
+                                        }
+                                      }
+                                    ]
+                                  }
+                                };
+                  
+                       //get bar chart canvas
+                       var mychart = document.getElementById("chart").getContext("2d");
+                       // draw bar chart
+                       var myBarChart = new Chart(mychart, {
+                                                    type: 'bar',
+                                                    data: barData,
+                                                    options: option
+                                                });
+                       
+                       
+                  }
+                    
+                  
+               </script>
+            </div>
+         </div>
+      </div>
+      <footer>
+     
+      </footer>
+   </body>
+   
+   
+</html>
