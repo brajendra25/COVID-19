@@ -1,48 +1,197 @@
-<div class="text-center header">
-   <h2>{{ title }}</h2>
-   {% include 'header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'header.html' %}
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">COVID-19</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <!-- Top Navigation: Left Menu -->
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="/"><i class="fa fa-home fa-fw"></i> </a></li>
+        </ul>
+
+        <!-- Top Navigation: Right Menu -->
+        <ul class="nav navbar-right navbar-top-links">
+            <li class="dropdown navbar-inverse">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="/">
+                    <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts hidden">
+                    <li>
+                        <a href="/">
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i> New Comment
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="/">
+                            <strong>See All Alerts</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="/">
+                    <i class="fa fa-user fa-fw"></i> brajendra <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-user hidden">
+                    <li><a href="/"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="/"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="/"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Sidebar -->
+        <div class="navbar-default sidebar " role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                        </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="/" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <li >
+                        <a href="/"><i class="fa fa-bar-chart-o fa-fw"></i> Countries<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level" >
+                               <li>
+                                    <a href="/Country?name=India&view=Graph">India</a>
+                                </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="/state"><i class="fa fa-table fa-fw"></i> State<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level" >
+                            <li>
+                                 <a href="/state?code=MH&action=Confirmed&state=Maharashtra&view=Graph">Maharashtra</a>
+                             </li>
+                             <li>
+                                <a href="/state?code=DL&action=Confirmed&state=Delhi&view=Graph">Delhi</a>
+                            </li>
+                            <li>
+                                <a href="/state?code=GJ&action=Confirmed&state=Gujarat&view=Graph">Gujarat</a>
+                            </li>
+                            <li>
+                                <a href="/state?code=UP&action=Confirmed&state=Uttar Pardesh&view=Graph">Uttar Pardesh</a>
+                            </li>
+                            <li class="divider">
+                                <a href="/Country?name=India&view=Tbl">All States</a>
+                            </li>
+                     </ul>
+                    </li>
+                    <li>
+                        <a href="/dictrict"><i class="fa fa-edit fa-fw"></i> Dictrict</a>
+                    </li>
+                    <li>
+                        <a href="/datafiles"><i class="fa fa-edit fa-fw"></i> Download Files</a>
+                    </li>
+                    <li>
+                        <a href="/about" ><i class="fa fa-edit fa-fw"></i> About Me</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="row">
+               
+                <div class="col-lg-10 ">
+                    <h3 class="page-header">{{title}}
+                </h3>
+                </div>
+        </div>
+            <!--Totals Recotds View-->
+           
+            <!--End-->
+            <!--Graph Area-->
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10 ">
+                   <div class=""><a href="/">Covid19<span> Cases</span></a></div>
+                       <div class="FAQ">
+                      <div>
+                         <h2 class="question">Are you official?</h2>
+                         <h2 class="answer">No, and this web site data is also not official.</h2>
+                      </div>
+                      <div class="">
+                         <h2 class="question">What are your sources? How is the data gathered for this project?</h2>
+                         <h2 class="answer">I got data from Google sheet and an API. 
+                         API is available for all at api.covid19india.org for India and for world <a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#e831c268-9da1-4d86-8b5a-8d7f61910af8" target="_blank> click here</a>. 
+                         We would love it if you can use this data in the fight against 
+                         this virus. The source <a href="https://telegra.ph/Covid-19-Sources-03-19">list is here.</a>
+                         </h2>
+                      </div>
+                      <div class="">
+                         <h2 class="question">Where can I find the data for this?</h2>
+                         <h2 class="answer">You can preview all the data collected in this page : patientdb.covid19india.org .
+                            All the data is available through an API for further analysis and development here : api.covid19india.org and for world data
+                            <a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#e831c268-9da1-4d86-8b5a-8d7f61910af8" target="_blank">Click Here</a>
+                         </h2>
+                      </div>
+                      <div class="">
+                         <h2 class="question">Who are you?</h2>
+                         <h2 class="answer">My name is Brajendra Shukla and I want to improve my analysis skill during this lockdown. 
+                             I have developed this project only for my self and this project is helping me to stay at home </h2>
+                      </div>
+                      
+                   </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                      <div class="col-lg-8">
+                        <a href="https://www.covid19india.org/" target="_blank" class="btn btn-info" role="button">Source of India Data</a>
+                        <a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#e831c268-9da1-4d86-8b5a-8d7f61910af8" target="_blank" class="btn btn-info" role="button">Source of World Data</a>
+                        <div align="right"> <a href="/download" target="_blank" class="btn btn-info" role="button">Download Latest Files</a>
+                        <a href="/wordldb" target="_blank" class="btn btn-info" role="button">Download World Files</a>
+                    </div>
+                    </div>
+                </div>
+            <!--End Graph-->
+    </div>
 </div>
-   
-   <body>
-      <br/>
-      <div class="container">
-      <div class="row header">
-         <div class=""><a href="/">Covid19<span> Cases</span></a></div>
-             <div class="FAQ">
-            <div>
-               <h2 class="question">Are you official?</h2>
-               <h2 class="answer">No, and this web site data is also not official.</h2>
-            </div>
-            <div class="">
-               <h2 class="question">What are your sources? How is the data gathered for this project?</h2>
-               <h2 class="answer">I got data from Google sheet and an API. 
-               API is available for all at api.covid19india.org for India and for world <a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#e831c268-9da1-4d86-8b5a-8d7f61910af8" target="_blank> click here</a>. 
-               We would love it if you can use this data in the fight against 
-               this virus. The source <a href="https://telegra.ph/Covid-19-Sources-03-19">list is here.</a>
-               </h2>
-            </div>
-            <div class="">
-               <h2 class="question">Where can I find the data for this?</h2>
-               <h2 class="answer">You can preview all the data collected in this page : patientdb.covid19india.org .
-                  All the data is available through an API for further analysis and development here : api.covid19india.org and for world data
-                  <a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#e831c268-9da1-4d86-8b5a-8d7f61910af8" target="_blank">Click Here</a>
-               </h2>
-            </div>
-            <div class="">
-               <h2 class="question">Who are you?</h2>
-               <h2 class="answer">My name is Brajendra Shukla and I want to improve my analysis skill during this lockdown. 
-                   I have developed this project only for my self and this project is helping me to stay at home </h2>
-            </div>
-            
-         </div>
-      </div>
-      <footer>
-         <div>
-            <a href="https://www.covid19india.org/" target="_blank" class="btn btn-info" role="button">Source of India Data</a>
-            <a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#e831c268-9da1-4d86-8b5a-8d7f61910af8" target="_blank" class="btn btn-info" role="button">Source of World Data</a>
-            <div align="right"> <a href="/download" target="_blank" class="btn btn-info" role="button">Download Latest Files</a></div>
-         </div>
-      </footer>
-   </body>
-   
+    <!-- jQuery -->
+    <script src="/static/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/static/js/metisMenu.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/js/startmin.js"></script>
+</body>
 </html>

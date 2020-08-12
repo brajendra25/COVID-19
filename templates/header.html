@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Corona Grwoth in India</title>
-     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js" ></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
-      <link rel="icon" href="/static/img/favicon.png">
-
-
-      
-<script>
-   $(document).ready(function(){
-      url = window.location.href;
-      page = url.split("/")[3]
-      $("a").removeClass("active")
-      $("#" + page).addClass("active")
-   });
+   <html lang="en">
+      <head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <meta name="description" content="">
+          <meta name="author" content="">
+          <link
+          rel="shortcut icon"
+          type="image/x-icon"
+          href="../static/img/favicon.png"
+        />
+          <title>COVID-19 Analysis</title>
   
-</script>
-      
-</head>
-   <div class="header">
-      <a id="home" href="/" class="active" >Home</a>
-      |
-      <a id="Country" href="/Country">Country</a>
-      |
-      <a id="state" href="/state">State</a>
-      |
-      <a id="dictrict" href="/dictrict">Dictrict</a>
-      |
-      <a id="world" href="/world">World Cases </a>
-      |
-      <a id="about" href="/about">About Me </a>
-   </div>
-<br/>
+          <!-- Bootstrap Core CSS -->
+          <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+          
+          <link href="/static/css/metisMenu.min.css" rel="stylesheet">
+  
+          <!-- MetisMenu CSS 
+          <link href="../css/metisMenu.min.css" rel="stylesheet">-->
+  
+          <!-- Timeline CSS -->
+          <link href="/static/css/timeline.css" rel="stylesheet">
+  
+          <!-- Custom CSS -->
+          <link href="/static/css/startmin.css" rel="stylesheet">
+  
+          <!-- Morris Charts CSS -->
+          <link href="/static/css/morris.css" rel="stylesheet">
+  
+          <!-- Custom Fonts -->
+          <link href="/static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+          <link href="/static/css/style.css" rel="stylesheet">
+      </head>
+
+
+  

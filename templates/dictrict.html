@@ -1,112 +1,258 @@
-<div class="text-center header">
-   <h2>{{ title }}</h2>
-   {% include 'header.html' %}
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-</div>
-   <script>
-      $(document).ready(function(){
-      MultiPileChart()
-       var action = "Confirmed";
-       var state=""; var state_code=""
-       var _dictrict="";
-        $(".state li a").click(function(){
-          $(".btnState:first-child").text($(this).text());
-          $(".btnState:first-child").val($(this).text());
-          state_code = $(this).attr("id")
-          state = $(this).text()
-          window.location.href = "/dictrictbyaction?code=" + state_code +"&state="+state;
-       });
-       });
-       
-   </script>
-   <body>
-      <br/>
-      <div class="container">
-         <div class="row">
-           
-         <div class="col-lg-3 col-md-3 col-xs-3 header">
-            <div class="dropdown " style="height: 1265px;">
-               <br/>
-               <ul class="state">
-                  {% for keys in states.keys() %} 
-                  <li><a href="#" id="{{keys}}"> {{states[keys]}}</a></li>
-                  {% endfor %}
-               </ul>
-            </div>
-          </div>
-            <div class="col-lg-9 col-md-9 col-xs-9 header">
-               <br/>
-               Confirmed Cases: 
-               <canvas id="Confirmed" style="width:100%; height:400px;"></canvas>
-               
-               Recovered Cases: 
-               <canvas id="Recovered" style="width:100%; height:380px;"></canvas>
-               
-               Deceased Cases: 
-               <canvas id="Deceased" style="width:100%; height:400px;"></canvas>
-               <script>
-                function MultiPileChart()
-                {
-                    $( "canvas" ).each(function( index ) {
-                            var color ="";
-                            if(($(this).attr("id")=="Confirmed"))
-                            {
-                                color = "#FFA833"
-                                data = [{% for item in Confirmed %}
-                                         "{{ item }}",
-                                      {% endfor %}]
-                                
-                            }
-                             if(($(this).attr("id")=="Recovered"))
-                             {
-                                color = "green"
-                                data = [{% for item in Recovered %}
-                                         "{{ item }}",
-                                      {% endfor %}]
-                                }
-                             if(($(this).attr("id")=="Deceased"))
-                             {
-                                color = "red"
-                                data = [{% for item in Deceased %}
-                                         "{{ item }}",
-                                      {% endfor %}]
-                                }
-                             DraWChat($(this).attr("id"),color,data)
-                        });
-                }
-                function DraWChat(mchart_id,color,_chartData)
-                  {
-                   
-                     var barData = {
-                     labels : [{% for item in labels %}
-                             "{{ item }}",
-                            {% endfor %}],
-                     datasets : [
-                        {
-                              fillColor: color,
-                              strokeColor: "rgba(151,187,205,1)",
-                              pointColor: "{{color}}",
-                              data : _chartData
-                        }]
-                     }
-                     // get bar chart canvas
-                     var mychart = document.getElementById(mchart_id).getContext("2d");
-                     steps = 20
-                     max = {{max}}
-                     // draw bar chart
-                     var LineChartDemo = new Chart(mychart).Line(barData, {
-                      scaleStepWidth: Math.ceil(max / steps),
-                     });
-                     }
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'header.html' %}
+<body>
 
-                  </script>
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">COVID-19</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <!-- Top Navigation: Left Menu -->
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="#"><i class="fa fa-home fa-fw"></i> </a></li>
+        </ul>
+
+        <!-- Top Navigation: Right Menu -->
+        <ul class="nav navbar-right navbar-top-links">
+            <li class="dropdown navbar-inverse">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts hidden">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i> New Comment
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Alerts</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> brajendra <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-user hidden">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Sidebar -->
+        <div class="navbar-default sidebar " role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                        </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="/" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <li >
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Countries<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level" >
+                               <li>
+                                    <a href="/Country?name=India&view=Graph">India</a>
+                                </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="/state"><i class="fa fa-table fa-fw"></i> State<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level" >
+                            <li>
+                                 <a href="/state?code=MH&action=Confirmed&state=Maharashtra&view=Graph">Maharashtra</a>
+                             </li>
+                             <li>
+                                <a href="/state?code=DL&action=Confirmed&state=Delhi&view=Graph">Delhi</a>
+                            </li>
+                            <li>
+                                <a href="/state?code=GJ&action=Confirmed&state=Gujarat&view=Graph">Gujarat</a>
+                            </li>
+                            <li>
+                                <a href="/state?code=UP&action=Confirmed&state=Uttar Pardesh&view=Graph">Uttar Pardesh</a>
+                            </li>
+                            <li class="divider">
+                                <a href="/Country?name=India&view=Tbl">All States</a>
+                            </li>
+                     </ul>
+                    </li>
+                    <li>
+                        <a href="/dictrict"><i class="fa fa-edit fa-fw"></i> Dictrict</a>
+                    </li>
+                    <li>
+                        <a href="/datafiles"><i class="fa fa-edit fa-fw"></i> Download Files</a>
+                    </li>
+                    <li>
+                        <a href="/about" ><i class="fa fa-edit fa-fw"></i> About Me</a>
+                    </li>
+                </ul>
             </div>
-         </div>
-      </div>
-      <footer>
-      <center>
-              <a href="https://www.covid19india.org/" target="_blank" class="btn btn-info" role="button">Source of Data</a>
-     </center>
-      </footer>
-   </body>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 ">
+                    <h3 class="page-header">{{title}}
+                    <a class="text-right" style="font-size: small; margin-left: 45%;" href="/Country?name=India&view=Graph">Graph View</a>
+                    <a class="text-right" style="font-size: small;" href="/Country?name=India&view=Tbl">Tabuler View</a>
+                </h3>
+                </div>
+            </div>
+            <!--Totals Recotds View-->
+           
+            <!--End-->
+            <!--Graph Area-->
+            <div class="row">
+           
+                <div class="col-lg-3 col-md-3 col-xs-3 header">
+                   <div class="dropdown " style="height: 1265px;">
+                      <br/>
+                      <ul class="state">
+                         {% for keys in states.keys() %} 
+                         <li><a href="#" id="{{keys}}"> {{states[keys]}}</a></li>
+                         {% endfor %}
+                      </ul>
+                   </div>
+                 </div>
+                   <div class="col-lg-9 col-md-9 col-xs-9 header">
+                      <br/>
+                      Confirmed Cases: 
+                      <canvas id="Confirmed" style="width:100%; height:400px;"></canvas>
+                      
+                      Recovered Cases: 
+                      <canvas id="Recovered" style="width:100%; height:380px;"></canvas>
+                      
+                      Deceased Cases: 
+                      <canvas id="Deceased" style="width:100%; height:400px;"></canvas>
+                      <script>
+                       function MultiPileChart()
+                       {
+                           $( "canvas" ).each(function( index ) {
+                                   var color ="";
+                                   if(($(this).attr("id")=="Confirmed"))
+                                   {
+                                       color = "#FFA833"
+                                       data = [{% for item in Confirmed %}
+                                                "{{ item }}",
+                                             {% endfor %}]
+                                       
+                                   }
+                                    if(($(this).attr("id")=="Recovered"))
+                                    {
+                                       color = "green"
+                                       data = [{% for item in Recovered %}
+                                                "{{ item }}",
+                                             {% endfor %}]
+                                       }
+                                    if(($(this).attr("id")=="Deceased"))
+                                    {
+                                       color = "red"
+                                       data = [{% for item in Deceased %}
+                                                "{{ item }}",
+                                             {% endfor %}]
+                                       }
+                                    DraWChat($(this).attr("id"),color,data)
+                               });
+                       }
+                       function DraWChat(mchart_id,color,_chartData)
+                         {
+                          
+                            var barData = {
+                            labels : [{% for item in labels %}
+                                    "{{ item }}",
+                                   {% endfor %}],
+                            datasets : [
+                               {
+                                     fillColor: color,
+                                     strokeColor: "rgba(151,187,205,1)",
+                                     pointColor: "{{color}}",
+                                     data : _chartData
+                               }]
+                            }
+                            // get bar chart canvas
+                            var mychart = document.getElementById(mchart_id).getContext("2d");
+                            steps = 20
+                            max = {{max}}
+                            // draw bar chart
+                            var LineChartDemo = new Chart(mychart).Line(barData, {
+                             scaleStepWidth: Math.ceil(max / steps),
+                            });
+                            }
+       
+                         </script>
+                   </div>
+                </div>
+            <!--End Graph-->
+        </div>
+    </div>
+
+</div>
+
+  <!-- jQuery -->
+  <script src="/static/js/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.min.js"></script>
+
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="/static/js/metisMenu.min.js"></script>
+
+  <!-- Custom Theme JavaScript -->
+  <script src="/static/js/startmin.js"></script>
+  <script src="/static/js/Chart2.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+  <script>
+    $(document).ready(function(){
+    MultiPileChart()
+     var action = "Confirmed";
+     var state=""; var state_code=""
+     var _dictrict="";
+      $(".state li a").click(function(){
+        $(".btnState:first-child").text($(this).text());
+        $(".btnState:first-child").val($(this).text());
+        state_code = $(this).attr("id")
+        state = $(this).text()
+        window.location.href = "/dictrictbyaction?code=" + state_code +"&state="+state;
+     });
+     });
+     
+ </script>
+</body>
 </html>

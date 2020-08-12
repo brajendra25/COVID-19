@@ -12,12 +12,37 @@ import json
 import pandas as pd
 
 _dirPath = "Data/Corona-Files/"
+
+def GetCountries():
+    error_msg = ""
+    
+    try:
+        with open(_dirPath + 'countries_data.json', 'r') as f:
+            data = json.load(f)
+        
+        df_Countries = pd.DataFrame.from_dict(data)
+        df_Countries = df_Countries.sort_values(['Country'], ascending=True)
+        return df_Countries
+
+    except OSError as err:
+        error_msg = "OS error: {0}".format(err)
+        return error_msg
+    except EnvironmentError as eberr:
+        error_msg = "OS error: {0}".format(eberr)
+        return error_msg
+    except:
+        error_msg = "Unexpected error:", sys.exc_info()[0]
+        return error_msg
+    finally:
+        f.close()
+
+
 def world_summary():
     error_msg = ""
     try:
         with open(_dirPath + 'summary_data.json', 'r') as f:
             data = json.load(f)
-        
+        print('ooo')
         df_Country = pd.DataFrame.from_dict(data["Countries"])
         df_Country.sort_values("TotalConfirmed", axis = 0, ascending = False, 
                  inplace = True, na_position ='last') 
@@ -58,8 +83,6 @@ def WorldTotal():
     try:
         with open(_dirPath + 'world_total_data.json', 'r') as f:
             data = json.load(f)
-
-        df_TotalRecords = pd.DataFrame.from_dict([data])
         return data
 
     except OSError as err:
@@ -72,4 +95,4 @@ def WorldTotal():
         error_msg = "Unexpected error:", sys.exc_info()[0]
         return error_msg
 
-#WorldTotal()
+GetCountries()

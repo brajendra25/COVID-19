@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'header.html' %}
+    <body>
+
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">COVID-19</a>
+                </div>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <ul class="nav navbar-nav navbar-left navbar-top-links">
+                    <li><a href="/"><i class="fa fa-home fa-fw"></i></a></li>
+                </ul>
+
+                <ul class="nav navbar-right navbar-top-links">
+                    <li class="dropdown navbar-inverse">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="/">
+                            <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts hidden">
+                            <li>
+                                <a href="/">
+                                    <div>
+                                        <i class="fa fa-comment fa-fw"></i> New Comment
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/">
+                                    <div>
+                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                        <span class="pull-right text-muted small">12 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/">
+                                    <div>
+                                        <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/">
+                                    <div>
+                                        <i class="fa fa-tasks fa-fw"></i> New Task
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/">
+                                    <div>
+                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center" href="/">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="/">
+                            <i class="fa fa-user fa-fw"></i> brajendra <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user hidden">
+                            <li><a href="/"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li><a href="/"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /.navbar-top-links -->
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                </span>
+                                </div>
+                                <!-- /input-group -->
+                            </li>
+                            <li>
+                                <a href="/" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            </li>
+                            <li >
+                                <a href="/"><i class="fa fa-bar-chart-o fa-fw"></i> Countries<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level" >
+                                        <li>
+                                            <a href="/Country?name=India&view=Graph">India</a>
+                                         </li>
+                                    </ul>
+                                
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a href="/state"><i class="fa fa-table fa-fw"></i> State<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level" >
+                                    <li>
+                                         <a href="/state?code=MH&action=Confirmed&state=Maharashtra&view=Graph">Maharashtra</a>
+                                     </li>
+                                     <li>
+                                        <a href="/state?code=DL&action=Confirmed&state=Delhi&view=Graph">Delhi</a>
+                                    </li>
+                                    <li>
+                                        <a href="/state?code=GJ&action=Confirmed&state=Gujarat&view=Graph">Gujarat</a>
+                                    </li>
+                                    <li>
+                                        <a href="/state?code=UP&action=Confirmed&state=Uttar Pardesh&view=Graph">Uttar Pardesh</a>
+                                    </li>
+                                    <li class="divider">
+                                        <a href="/Country?name=India&view=Tbl">All States</a>
+                                    </li>
+                             </ul>
+                            </li>
+                            <li>
+                                <a href="/dictrict"><i class="fa fa-edit fa-fw"></i> Dictrict</a>
+                            </li>
+                            
+                            <li>
+                                <a href="/about" ><i class="fa fa-edit fa-fw"></i> About Me</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-11">
+                            <h1 class="page-header">Dashboard</h1>
+                        </div>
+                        <div class="col-lg-1">
+                            <form>
+                                <input class="page-header" type=button value="Print me!" onClick="javascript:window.print()">
+                            </form>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-comments fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div>{{Total[0]}}</div>
+                                            <div>Total Confirmed!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="/">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View Details</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-green">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-tasks fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div>{{Total[2]}}</div>
+                                            <div>Total Recovered!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="/">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View Details</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-yellow">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-shopping-cart fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div>{{Total[3]}}</div>
+                                            <div>Total Active!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="/">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View Details</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-red">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-support fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div>{{Total[1]}}</div>
+                                            <div>Total Deaths!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="/">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View Details</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> {{title}}
+                                    <div class="pull-right">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                Actions
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu pull-right" role="menu">
+                                                <li><a href="/?action=Active">Active</a>
+                                                </li>
+                                                <li><a href="/?action=Confirmed">Confirmed</a>
+                                                </li>
+                                               
+                                                <li><a href="/?action=Recovered">Recovered</a>
+                                                </li>
+                                                <li></li>
+                                                <li><a href="/?action=Deaths">Deaths</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- COVID19 World Bar Chart -->
+                                <div class="panel-body">
+                                    <div class="col-lg-12">
+                                    <canvas id="morris-area-chart"></canvas>
+                                    </div>
+                                </div>
+                                <!-- End COVID19 World Bar Chart -->
+                            </div>
+                            <!-- /.panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> {{title}}
+                                    <div class="pull-right">
+                                        <div class="btn-group">
+                                            
+                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                Actions
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu pull-right" role="menu">
+                                                <li><a href="/?action=Active">Active</a>
+                                                </li>
+                                                <li><a href="/?action=Confirmed">Confirmed</a>
+                                                </li>
+                                               
+                                                <li><a href="/?action=Recovered">Recovered</a>
+                                                </li>
+                                                <li></li>
+                                                <li><a href="/?action=Deaths">Deaths</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <!-- /.col-lg-4 (nested) -->
+                                        <div id="chart1" class="col-lg-12">
+                                            <canvas id="morris-area--chart"></canvas>
+                                        </div>
+                                        <!-- /.col-lg-8 (nested) -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                            <div id="printableArea" class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-clock-o fa-fw"></i> Countries Report 
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <ul class="timeline">
+                                        {% for item in summary.head(6).index %}
+                                        <li class="col-lg-6">
+                                            
+                                            <div  class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4 class="timeline-title">{{summary['Country'][item]}}</h4>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p>Total Confirmed : {{summary["TotalConfirmed"][item]}}</p>
+                                                    <p>Total Deaths : {{summary["TotalDeaths"][item]}}</p>
+                                                    <p>Total Recovered : {{summary["TotalRecovered"][item]}}</p>
+                                                    <p>Till Date : {{summary["Date"][item][0:10]}}</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                       {% endfor %}
+                                    </ul>
+                                   
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <a href="/">
+                                <div>
+                                    <span class="pull-left">View Details</span>
+                                    <span style="margin-left: 20%;" onclick="javascript:printDiv('printableArea')"">
+                                        Print Countries Report Only
+                                    </span>
+                                    <span class="pull-right">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </span>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-8 -->
+                        <div class="col-lg-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bell fa-fw"></i> Today 
+                                </div>
+                                <!-- Today Cases -->
+                                <div class="panel-body">
+                                    <div class="list-group">
+                                        {% for item in notification.keys() %}
+                                        <a href="/" class="list-group-item">
+                                            <i class="fa fa-comment fa-fw"></i>{{item}}
+                                                <span class="pull-right text-muted "><em><b>{{notification[item]}}</b></em>
+                                                </span>
+                                        </a>
+                                        {% endfor %}
+                                        
+                                    </div>
+                                    <!-- /.list-group -->
+                                    <a href="/" class="btn btn-default btn-block">View All Alerts</a>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
+                                </div>
+                                <div class="panel-body">
+                                    <div id="morris-donut-chart"></div>
+                                    <a href="/" class="btn btn-default btn-block">View Details</a>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                            <div class="chat-panel panel panel-default hidden">
+                                <div class="panel-heading ">
+                                    <i class="fa fa-comments fa-fw"></i>
+                                    Coming Soon..
+                                    <div class="btn-group pull-right">
+                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle"
+                                                data-toggle="dropdown">
+                                            <i class="fa fa-chevron-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu slidedown">
+                                            <li>
+                                                <a href="/">
+                                                    <i class="fa fa-refresh fa-fw"></i> Refresh
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/">
+                                                    <i class="fa fa-check-circle fa-fw"></i> Available
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/">
+                                                    <i class="fa fa-times fa-fw"></i> Busy
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/">
+                                                    <i class="fa fa-clock-o fa-fw"></i> Away
+                                                </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="/">
+                                                    <i class="fa fa-sign-out fa-fw"></i> Sign Out
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body hidden">
+                                    <ul class="chat">
+                                        <li class="left clearfix">
+                                                <span class="chat-img pull-left">
+                                                    <img src="#" alt="User Avatar"
+                                                         class="img-circle"/>
+                                                </span>
+
+                                            <div class="chat-body clearfix">
+                                                <div class="header">
+                                                    <strong class="primary-font">Jack Sparrow</strong>
+                                                    <small class="pull-right text-muted">
+                                                        <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
+                                                    </small>
+                                                </div>
+                                              
+                                            </div>
+                                        </li>
+                                        <li class="right clearfix">
+                                                <span class="chat-img pull-right">
+                                                    <img src="/" alt="User Avatar"
+                                                         class="img-circle"/>
+                                                </span>
+
+                                            <div class="chat-body clearfix">
+                                                <div class="header">
+                                                    <small class=" text-muted">
+                                                        <i class="fa fa-clock-o fa-fw"></i> 13 mins ago
+                                                    </small>
+                                                    <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                                </div>
+                                                <p>
+                                                    fthgh
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li class="left clearfix">
+                                                <span class="chat-img pull-left">
+                                                    <img src="#" alt="User Avatar"
+                                                         class="img-circle"/>
+                                                </span>
+
+                                            <div class="chat-body clearfix">
+                                                <div class="header">
+                                                    <strong class="primary-font">Jack Sparrow</strong>
+                                                    <small class="pull-right text-muted">
+                                                        <i class="fa fa-clock-o fa-fw"></i> 14 mins ago
+                                                    </small>
+                                                </div>
+                                                
+                                            </div>
+                                        </li>
+                                        <li class="right clearfix">
+                                                <span class="chat-img pull-right">
+                                                    <img src="#" alt="User Avatar"
+                                                         class="img-circle"/>
+                                                </span>
+
+                                            <div class="chat-body clearfix">
+                                                <div class="header">
+                                                    <small class=" text-muted">
+                                                        <i class="fa fa-clock-o fa-fw"></i> 15 mins ago
+                                                    </small>
+                                                    <strong class="pull-right primary-font">sdff</strong>
+                                                </div>
+                                                <p>
+                                                   dgfg
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- /.panel-body -->
+                                <div class="panel-footer">
+                                    <div class="input-group">
+                                        <input id="btn-input" type="text" class="form-control input-sm"
+                                               placeholder="Type your message here..."/>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-warning btn-sm" id="btn-chat">
+                                                    Send
+                                                </button>
+                                            </span>
+                                    </div>
+                                </div>
+                                <!-- /.panel-footer -->
+                            </div>
+                            <!-- /.panel .chat-panel -->
+                        </div>
+                        <!-- /.col-lg-4 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+       
+        <!--Chat Bot-->
+        <div id="dvChatbot">
+            <div class="box"></div>
+            <div class="chatIcon">
+                <img src="../static/img/chatbot.png" width="150px" height="150px">
+            </div>
+           
+            <div class="boxed hidden">
+                <div style="height: 80px; width: 450px;  border-radius: 10px; position: fixed; background-color: cornflowerblue;">
+                   <p style="font-size: large; ">❤️ Hi! I am IndoCOVID-19 ❤️</p>
+                  <p style="font-size: smaller; margin-left: 10%; margin-top: -15px;"> How can I help you !!</p>
+                <p class="close" style="margin-right: 2px; z-index: -99999; color: rgb(218, 38, 38); opacity:2; margin-top: -65px;">Close X</p>
+                </div>
+                <br/><br/><br/><br/>
+                <div id="chatbox">
+                  
+                </div>
+                
+                <div id="dots" class="hidden">
+                    <span class="dot"></span> <span class="dot"></span>
+                    <span class="dot"></span><span class="dot"></span>
+                </div>
+
+
+                <div id="userInput">
+                  <div class="form-group">
+                    <input id="textInput" class="form-control" type="text" name="msg" 
+                        placeholder="Type Message" />
+                    <button class="btn" style="width: 15%; height: 44px;  border-radius: 5px;" onclick="getBotResponse();">Send</button>
+                </div>
+                </div>
+             
+             
+            </div>
+          </div>
+        <!--End of Chatbot-->
+
+        <!-- jQuery -->
+        <script src="/static/js/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/static/js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="/static/js/metisMenu.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="/static/js/startmin.js"></script>
+        <script src="/static/js/Chart2.0.js"></script>
+
+     
+        <script>
+            $(document).ready(function(){
+                DraWChat();
+            });
+            function printDiv(divName) {
+                var printContents = document.getElementById(divName).innerHTML;
+                var originalContents = document.body.innerHTML;
+                document.body.innerHTML = printContents;
+                console.log(printContents)
+                window.print();
+                document.body.innerHTML = originalContents;
+            }
+        </script>
+        <script>
+            function DraWChat()
+            {
+             max = {{max}}
+                var barData = {
+                               labels : [
+                                      {% for item in labels %}
+                                       "{{ item }}",
+                                      {% endfor %}
+                                      ],
+            
+                              datasets : [{
+                                  backgroundColor: "{{color}}",
+                                  label: "Cases:",
+                                  data :  [
+                                            {% for item in values %}
+                                               "{{ item }}",
+                                              {% endfor %}
+                                            ]
+                                    }],
+                            }
+                
+                  var option = {
+                            scales: {
+                              yAxes: [
+                                {
+                                  stacked: true,
+                                  gridLines: {
+                                    display: true,
+                                    
+                                  },
+                                  ticks: {
+                                    suggestedMax: max,
+                                    suggestedMin: 0
+                                  }
+                                }
+                              ],
+                              xAxes: [
+                                {
+                                  gridLines: {
+                                    display: false
+                                  }
+                                }
+                              ]
+                            }
+                          };
+            
+                 //get bar chart canvas
+                 var mychart = document.getElementById("morris-area-chart").getContext("2d");
+                 // draw bar chart
+                 var myBarChart = new Chart(mychart, {
+                                              type: 'bar',
+                                              data: barData,
+                                              options: option
+                                          });
+
+                //Line Chart :
+                var lineChart = document.getElementById("morris-area--chart").getContext("2d");
+                var stackedLine = new Chart(lineChart, {
+                    type: 'line',
+                    data: barData,
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                stacked: true
+                            }]
+                        }
+                    }
+});
+                 
+                 
+            }
+              
+            
+         </script>
+
+        <!--For Chat Bot-->
+        <script>
+            $(document).ready(function(){
+             $(".boxed").height("20px");
+
+            $(".close").click(function(){
+                $(".boxed").addClass("hidden")
+                $(".boxed").height("20px");
+            });
+            $(".chatIcon img").click(function(e) {
+                var _height = $(".boxed").height();
+                if(_height=="20")
+                 {
+                    $(".boxed").removeClass("hidden")
+                    $(".boxed").height("540px");
+                    $("#chatbox").html("")
+                    $("#dots").removeClass("hidden");
+                    setTimeout(
+                        function() 
+                        {
+                            var botHtml = '<p class="botText bot "><span class="" onclick=action(this)>' + "Hi, How are you?" + "</span></p>";
+                            $("#chatbox").append(botHtml);
+                            $("#dots").addClass("hidden");
+                        }, 2000);
+                        $("#dots").removeClass("hidden");
+                        setTimeout(
+                        function() 
+                        {
+                            var botHtml = '</br><p class="botText bot "><span>' + "How can I help you !!" + "</span></p>";
+                            $("#chatbox").append(botHtml);
+                            $("#dots").addClass("hidden");
+                        }, 4000);
+                        setTimeout(
+                        function() 
+                        {
+                            var botHtml = '</br><p class="message-options-button" onclick=action(this)><span>' + "Chatbot !!" + "</span></p>";
+                            $("#chatbox").append(botHtml);
+                            $("#dots").addClass("hidden");
+                        }, 5000);
+                        setTimeout(
+                        function() 
+                        {
+                            var botHtml = '<p class="message-options-button" onclick=action(this)><span>' + "AI/ML" + "</span></p>";
+                            $("#chatbox").append(botHtml);
+                            $("#dots").addClass("hidden");
+                        }, 5000);
+                        setTimeout(
+                        function() 
+                        {
+                            var botHtml = '<p class="message-options-button" onclick=action(this)><span>' + "Web & Mobile Apps" + "</span></p>";
+                            $("#chatbox").append(botHtml);
+                            $("#dots").addClass("hidden");
+                        }, 5000);
+
+                        setTimeout(
+                        function() 
+                        {
+                            var botHtml = '<p class="message-options-button" onclick=action(this)><span>' + "About COVID-19" + "</span></p>";
+                            $("#chatbox").append(botHtml);
+                            $("#dots").addClass("hidden");
+                        }, 5000);
+                    document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+                 }
+                else
+                {
+                    $(".boxed").addClass("hidden")
+                    $(".boxed").height("44px");
+                }
+
+            });
+
+            });
+
+            function getBotResponse() {
+            var rawText = $("#textInput").val();
+            var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+            $("#textInput").val("");
+            $("#chatbox").append(userHtml);
+            document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+            $("#dots").removeClass("hidden");
+            $.get("/get", { msg: rawText }).done(function(data) {
+                var botHtml = '<p class="botText bot"><span class="" onclick=action(this)>' + data + "</span></p>";
+                $("#dots").addClass("hidden");
+                
+                $("#chatbox").append(botHtml);
+                document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+            });
+            }
+            $("#textInput").keypress(function(e) {
+            if (e.which == 13) {
+                getBotResponse();
+            }
+            });
+
+         function action(obj)
+            {
+            val = $(obj).text();
+            $("#textInput").val(val)
+            getBotResponse();
+            }
+        </script>
+        <!--End of chatbot-->
+    </body>
+</html>
