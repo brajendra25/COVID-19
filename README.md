@@ -4,7 +4,7 @@
 No, and this web site data is also not official.
 
 <b>What are your sources? How is the data gathered for this project?</b><br/>
-I got data from Google sheet and an API. API is available for all at <a href="http://api.covid19india.org" target='_blank'>api.covid19india.org</a> for India 
+I got data from Google sheet and an API. API is available for all at <a href="http://api.covid19india.org" target="_blank">api.covid19india.org</a> for India 
 and for world <a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#e831c268-9da1-4d86-8b5a-8d7f61910af8" target="_blank">list is here</a>.
 
 <b>Where can I find the data for this?</b><br/>
